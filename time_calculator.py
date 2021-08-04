@@ -1,4 +1,4 @@
-def add_time(start, duration, day=None):
+def add(start_time, new_time, day=None):
 
     days = {
         'monday': 0,
@@ -15,45 +15,21 @@ def add_time(start, duration, day=None):
         'PM': 'AM'
     }
 
-    old_hr = int(start.split()[0].split(':')[0])
-    old_mn = int(start.split()[0].split(':')[1])
-    period =  start.split()[1]
+    old_hour = start_time.split(':')[0]
+    old_minute = start_time.split(':')[1].split()[0]
+    old_period = start_time.split()[-1]
 
-    new_hr = int(duration.split(':')[0])
-    new_mn = int(duration.split(':')[1])
-    n_days = int(new_hr / 24)
+    new_hour = new_time.split(':')[0]
+    new_minute = new_time.split(':')[1]
+    n_days = int((old_hour + new_hour) / 24)
 
-    mn = old_mn + new_mn
+    hour = old_hour + new_hour
+    minute = old_minute + new_minute
 
-    if mn >= 60:
-        old_hr += 1
-        mn %= 60
+    if minute >= 60:
+        hour += 1
+        minute %= 60
 
-    p_cyle = int((old_hr + new_hr) / 12)
-    hr = (old_hr + new_hr) % 12
+    
 
-    if mn < 10:
-        mn = '0' + str(mn)
-
-    if hr == 0:
-        hr = 12
-
-    if period == 'PM' and old_hr + (new_hr % 12) >= 12:
-        n_days += 1
-
-    if p_cyle % 2 == 1:
-        period = periods[period]
-
-    new_time = f'{hr}:{mn} {period}'
-
-    if day:
-        index = int((days[day.lower()] + n_days) % 7)
-        day = list(days.keys())[list(days.values()).index(int(index))]
-        new_time += ', ' + day.capitalize()
-
-    if n_days == 1:
-        return f'{new_time} (next day)'
-    elif n_days > 1:
-        return f'{new_time} ({n_days} days later)'
-
-    return new_time
+add('1:00 AM', '2')
