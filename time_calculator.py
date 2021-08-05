@@ -62,7 +62,7 @@ def add_time(start, duration, day=None):
 
     if day:
         index = (days[day.lower()] + n_days) % 7
-        day = list(days.keys())[list(days.values()).index(index)]
+        day = list(days.keys())[index]
         new_time += f', {day.capitalize()}'
 
     if n_days == 1:
