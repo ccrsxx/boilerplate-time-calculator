@@ -1,4 +1,4 @@
-def add_time(start_time, new_time, day=None):
+def add_time(start, duration, day=None):
 
     days = {
         'monday': 0,
@@ -10,12 +10,12 @@ def add_time(start_time, new_time, day=None):
         'sunday': 6
     }
 
-    old_hour = int(start_time.split(':')[0])
-    old_minute = int(start_time.split(':')[1].split()[0])
-    old_period = start_time.split()[-1]
+    old_hour = int(start.split(':')[0])
+    old_minute = int(start.split()[0].split(':')[1])
+    old_period =  start.split()[1]
 
-    new_hour = int(new_time.split(':')[0])
-    new_minute = int(new_time.split(':')[1])
+    new_hour = int(duration.split(':')[0])
+    new_minute = int(duration.split(':')[1])
 
     period = None
     n_days = 0
