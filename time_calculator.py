@@ -54,7 +54,7 @@ def add_time(start, duration, day=None):
         hour = 12
         period = 'PM'
 
-    elif hour >= 1 and not period:
+    elif hour >= 13 and not period:
         hour -= 12
         period = 'PM'
 
